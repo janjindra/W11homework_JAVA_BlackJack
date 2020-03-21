@@ -7,15 +7,15 @@ public class Game {
     public ArrayList<Player> players;
     public Deck deck;
     public ArrayList<Integer> allHandTotals;
+    public ArrayList<Integer> allHandTotalsLessThan21;
 
 
     public Game (Deck deck){
         this.deck = new Deck();
         this.players = new ArrayList<Player>();
         this.allHandTotals = new ArrayList<Integer>();
+        this.allHandTotalsLessThan21 = new ArrayList<Integer>();
 
-//        deck.add52cardsToDeck();
-//        deck.shuffleCards();
     }
 
     //Methods
@@ -53,32 +53,32 @@ public class Game {
         }
     }
 
-    public ArrayList<Integer> removeAllHandTotalsGreaterThan21(){
-        ArrayList<Integer> allHandTotalsGreaterThan21 = this.allHandTotals;
-        for (Integer i : allHandTotalsGreaterThan21){
-            if (i > 21) {
-                allHandTotalsGreaterThan21.remove(i);
+    public void removeAllHandTotalsGreaterThan21(){
+        for (Integer element : this.allHandTotals){
+            if (element <= 21) {
+                this.allHandTotalsLessThan21.add(element);
             }
         }
-        return allHandTotalsGreaterThan21;
     }
 
     public String findTheWinner(){
-        String winnerName;
-        int winnerHandTotal;
-        int bust = 21;
-//        removeAllHandTotalsGreaterThan21();
         for (Player player : this.players) {
-            if ( (player.calculateHandTotal() == Collections.max(removeAllHandTotalsGreaterThan21()) &&
-            (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals))))) {
-                String winnerAnnouncement = "The winner is "+player.name +" with "+player.calculateHandTotal()+" points.";
-                winnerName = player.getName();
-                winnerHandTotal = player.calculateHandTotal();
-                return winnerAnnouncement;
+            if (this.allHandTotalsLessThan21.isEmpty()==false) {
+                if ((player.calculateHandTotal() == (Collections.max(this.allHandTotalsLessThan21)))
+                        && (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals)))) {
+                    String winnerAnnouncement = "The winner is " + player.name + " with " + player.calculateHandTotal() + " points.";
+                    return winnerAnnouncement;
+                }
             }
         }
-        String draw = "It's a draw.";
-        return draw;
+        if (this.allHandTotalsLessThan21.isEmpty()){
+            String allLost = "Sorry, everybody lost...";
+            return allLost;
+        }
+        else {
+            String draw = "It's a draw.";
+            return draw;
+        }
     }
 
 }

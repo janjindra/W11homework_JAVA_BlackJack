@@ -80,10 +80,11 @@ public class GameTest {
         player2.addCardToHand(card1);
         player2.addCardToHand(card2);
         game.pushAllHandTotalsToArray();
+        game.removeAllHandTotalsGreaterThan21();
         assertEquals(13, game.allHandTotals.get(0),0.01);
         assertEquals(20, game.allHandTotals.get(1),0.01);
-        assertEquals(20, Collections.max(game.allHandTotals),0.01);
-        assertEquals("The winner is Peter", game.findTheWinner());
+        assertEquals(20, Collections.max(game.allHandTotalsLessThan21),0.01);
+        assertEquals("The winner is Peter with 20 points.", game.findTheWinner());
     }
 
     @Test
@@ -95,9 +96,10 @@ public class GameTest {
         player2.addCardToHand(card3);
         player2.addCardToHand(card2);
         game.pushAllHandTotalsToArray();
+        game.removeAllHandTotalsGreaterThan21();
         assertEquals(13, game.allHandTotals.get(0),0.01);
         assertEquals(13, game.allHandTotals.get(1),0.01);
-        assertEquals(13, Collections.max(game.allHandTotals),0.01);
+        assertEquals(13, Collections.max(game.allHandTotalsLessThan21),0.01);
         assertEquals("It's a draw.", game.findTheWinner());
     }
 
