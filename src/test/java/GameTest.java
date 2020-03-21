@@ -50,6 +50,16 @@ public class GameTest {
     }
 
     @Test
+    public void twist_dealOneMoreCard(){
+        game.addPlayer(player1);
+        game.startGame(deck);
+        game.twist_dealOneMoreCard(deck, player1);
+        assertEquals(1, game.countPlayers());
+        assertEquals(3, player1.countNumberOfCardsInHand());
+        assertEquals(49, deck.getCards().size());
+    }
+
+    @Test
     public void canPushAllHandTotalsToArray(){
         game.addPlayer(player1);
         game.addPlayer(player2);

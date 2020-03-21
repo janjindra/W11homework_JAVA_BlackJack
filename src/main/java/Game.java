@@ -42,6 +42,11 @@ public class Game {
         }
     }
 
+    public void twist_dealOneMoreCard(Deck deck, Player player) {
+        Card twistDealtCard1 = deck.dealACard();
+        player.addCardToHand(twistDealtCard1);
+    }
+
     public void pushAllHandTotalsToArray() {
         for ( Player player : this.players ) {
             this.allHandTotals.add(player.calculateHandTotal());
@@ -54,7 +59,7 @@ public class Game {
         for (Player player : this.players) {
             if ( player.calculateHandTotal() == Collections.max(allHandTotals) &&
                     (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals)))) {
-                String winnerAnnouncement = "The winner is "+player.name;
+                String winnerAnnouncement = "The winner is "+player.name +" with "+player.calculateHandTotal()+" points.";
                 winnerName = player.getName();
                 winnerHandTotal = player.calculateHandTotal();
                 return winnerAnnouncement;

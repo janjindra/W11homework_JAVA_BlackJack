@@ -32,6 +32,7 @@ public class Deck {
     public void shuffleCards(){
         Collections.shuffle(this.cards);
     }
+
     public Card dealACard(){
 //        Random rand = new Random();
 //        Card chosenCard = cards.get(rand.nextInt(cards.size()));
