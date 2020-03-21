@@ -53,12 +53,24 @@ public class Game {
         }
     }
 
+    public ArrayList<Integer> removeAllHandTotalsGreaterThan21(){
+        ArrayList<Integer> allHandTotalsGreaterThan21 = this.allHandTotals;
+        for (Integer i : allHandTotalsGreaterThan21){
+            if (i > 21) {
+                allHandTotalsGreaterThan21.remove(i);
+            }
+        }
+        return allHandTotalsGreaterThan21;
+    }
+
     public String findTheWinner(){
         String winnerName;
         int winnerHandTotal;
+        int bust = 21;
+//        removeAllHandTotalsGreaterThan21();
         for (Player player : this.players) {
-            if ( player.calculateHandTotal() == Collections.max(allHandTotals) &&
-                    (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals)))) {
+            if ( (player.calculateHandTotal() == Collections.max(removeAllHandTotalsGreaterThan21()) &&
+            (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals))))) {
                 String winnerAnnouncement = "The winner is "+player.name +" with "+player.calculateHandTotal()+" points.";
                 winnerName = player.getName();
                 winnerHandTotal = player.calculateHandTotal();

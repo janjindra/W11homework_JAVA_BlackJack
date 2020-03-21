@@ -13,7 +13,7 @@ public class Runner {
         Scanner in = new Scanner(System.in);
         System.out.println("How many players are playing the game? ");
         String number = in.nextLine();
-        System.out.println("The number of players is: "+number);
+        System.out.println(number + " players are playing this game.");
 
 
         for (int i=0; i < parseInt(number); i++) {
@@ -38,16 +38,13 @@ public class Runner {
 
             System.out.println(player.getName() + ", do you want to twist or stick?");
             Scanner twistOrStick = new Scanner(System.in);
-            String twistOrStickInput = twistOrStick.nextLine().toString();
-            System.out.println("input is: " +twistOrStickInput);
+            String twistOrStickInput = twistOrStick.nextLine();
 
             while (twistOrStickInput.equals("twist")) {
-
                 //deal one more card
-                System.out.println("input issss: " +twistOrStickInput);
                 game.twist_dealOneMoreCard(deck, player);
 
-                System.out.println(player.getName() + " has now been dealt  also the "
+                System.out.println(player.getName() + " has now been dealt the "
                             + player.hand.get((player.hand.size()-1)).getRank() + " of " + player.hand.get((player.hand.size()-1)).getSuit());
                 System.out.println(player.getName() + "'s hand total is now "+player.calculateHandTotal());
 
@@ -56,7 +53,6 @@ public class Runner {
                 String twistOrStickInputAgain = twistOrStickAgain.nextLine();
                 twistOrStickInput = twistOrStickInputAgain;
             }
-
 
             System.out.println("--------------------------------");
         }
