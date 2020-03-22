@@ -35,6 +35,11 @@ public class Player {
         int handTotal = 0;
         for (Card card : this.hand ) {
             handTotal = handTotal + card.getValuesFromRankType();
+            for (Card checkAllCardsAgain : this.hand) {
+                if (checkAllCardsAgain.getRank().equals(RankType.ACE) && (handTotal > 21)) {
+                    handTotal = handTotal - 10;
+                }
+            }
         }
         return handTotal;
     }

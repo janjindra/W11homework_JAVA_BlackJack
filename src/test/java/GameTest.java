@@ -1,11 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 import java.util.Collections;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertFalse;
 
 public class GameTest {
 
@@ -67,7 +64,7 @@ public class GameTest {
         player2.addCardToHand(card1);
         game.pushAllHandTotalsToArray();
         assertEquals(2, game.allHandTotals.size());
-        assertEquals(false, game.allHandTotals.isEmpty());
+        assertFalse(game.allHandTotals.isEmpty());
         assertEquals(10, game.allHandTotals.get(0),0.01);
     }
 

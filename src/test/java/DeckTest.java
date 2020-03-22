@@ -32,7 +32,7 @@ public class DeckTest {
     @Test
     public void canShuffleCards_NotShuffled(){
         deck.add52cardsToDeck();
-        assertEquals(deck.getCards().get(0).getValuesFromRankType(),1);
+        assertEquals(deck.getCards().get(0).getValuesFromRankType(),11);
     }
 
     @Test

@@ -18,9 +18,9 @@ public class Runner {
         System.out.println("|____/|_|`__,_|``___|_|`_`____/ `__,_|`___|_|`_` ");
         System.out.println(" ");
 
-        while (play.equals("YES") || play.equals("Yes") || play.equals("yes")) {
+        while (play.equals("YES") || play.equals("Yes") || play.equals("yes") || play.equals("Y") || play.equals("y")) {
 
-            //clear all stats if the game is to be played again:
+            //clear all arrays if the game is to be played again:
             deck.cards.clear();
             game.players.clear();
             game.allHandTotals.clear();
@@ -28,12 +28,11 @@ public class Runner {
 
             Scanner in = new Scanner(System.in);
             System.out.println("How many players are playing the game? ");
-            String number = in.nextLine();
-            System.out.println(number + " players are playing this game.");
+            String numberOfPlayers = in.nextLine();
+            System.out.println(numberOfPlayers + " players are playing this game.");
 
 
-            for ( int i = 0; i < parseInt(number); i++ ) {
-
+            for ( int i = 0; i < parseInt(numberOfPlayers); i++ ) {
                 System.out.println("Enter the name of player " + (i + 1) + ": ");
                 Scanner name = new Scanner(System.in);
                 String playerName = name.next();
@@ -62,6 +61,7 @@ public class Runner {
                             + player.hand.get((player.hand.size() - 1)).getRank() + " of " + player.hand.get((player.hand.size() - 1)).getSuit());
                     System.out.println(player.getName() + "'s hand total is now " + player.calculateHandTotal());
 
+
                     if (player.calculateHandTotal() <= 21) {
                         System.out.println(player.getName() + ", do you want to twist or stick?");
                         Scanner twistOrStickAgain = new Scanner(System.in);
@@ -75,12 +75,10 @@ public class Runner {
                 System.out.println("--------------------------------");
             }
 
-            //Find the winner
-            game.pushAllHandTotalsToArray();
-//            System.out.println("push all"+game.allHandTotals);
-            game.removeAllHandTotalsGreaterThan21();
-//            System.out.println("remover over-21's" +game.allHandTotalsLessThan21);
+//            game.pushAllHandTotalsToArray();
+//            game.removeAllHandTotalsGreaterThan21();
 
+            //Find the winner
             System.out.println(game.findTheWinner());
 
             //Wanna play again?
@@ -89,6 +87,5 @@ public class Runner {
             String playAgain = again.nextLine();
             play = playAgain;
         }
-
     }
 }

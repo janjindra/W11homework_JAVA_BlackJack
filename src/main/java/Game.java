@@ -62,6 +62,8 @@ public class Game {
     }
 
     public String findTheWinner(){
+        pushAllHandTotalsToArray();
+        removeAllHandTotalsGreaterThan21();
         for (Player player : this.players) {
             if (this.allHandTotalsLessThan21.isEmpty()==false) {
                 if ((player.calculateHandTotal() == (Collections.max(this.allHandTotalsLessThan21)))
