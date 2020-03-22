@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Deck {
 
@@ -34,8 +33,6 @@ public class Deck {
     }
 
     public Card dealACard(){
-//        Random rand = new Random();
-//        Card chosenCard = cards.get(rand.nextInt(cards.size()));
         Card chosenCard = this.cards.get(0);
         removeDealtCardFromDeck(chosenCard);
         return chosenCard;

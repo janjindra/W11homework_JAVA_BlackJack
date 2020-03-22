@@ -10,7 +10,7 @@ public class Game {
     public ArrayList<Integer> allHandTotalsLessThan21;
 
 
-    public Game (Deck deck){
+    public Game(){
         this.deck = new Deck();
         this.players = new ArrayList<Player>();
         this.allHandTotals = new ArrayList<Integer>();
@@ -65,21 +65,18 @@ public class Game {
         pushAllHandTotalsToArray();
         removeAllHandTotalsGreaterThan21();
         for (Player player : this.players) {
-            if (this.allHandTotalsLessThan21.isEmpty()==false) {
+            if (!this.allHandTotalsLessThan21.isEmpty()) {
                 if ((player.calculateHandTotal() == (Collections.max(this.allHandTotalsLessThan21)))
                         && (allHandTotals.indexOf(Collections.max(allHandTotals)) == allHandTotals.lastIndexOf(Collections.max(allHandTotals)))) {
-                    String winnerAnnouncement = "The winner is " + player.name + " with " + player.calculateHandTotal() + " points.";
-                    return winnerAnnouncement;
+                    return "The winner is " + player.name + " with " + player.calculateHandTotal() + " points.";
                 }
             }
         }
         if (this.allHandTotalsLessThan21.isEmpty()){
-            String allLost = "Sorry, everybody lost...";
-            return allLost;
+            return "Sorry, everybody lost...";
         }
         else {
-            String draw = "It's a draw.";
-            return draw;
+            return "It's a draw.";
         }
     }
 

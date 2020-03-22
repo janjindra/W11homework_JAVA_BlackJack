@@ -1,14 +1,11 @@
-import java.util.Scanner;
-
+import java.util.*;
 import static java.lang.Integer.parseInt;
-
 
 public class Runner {
 
     public static void main(String[] args) {
         Deck deck = new Deck();
-        Game game = new Game(deck);
-        String play = "YES";
+        Game game = new Game();
 
         System.out.println(" ____  _            _        _            _ ");
         System.out.println("|  _ `| |          | |      | |          | | ");
@@ -18,7 +15,8 @@ public class Runner {
         System.out.println("|____/|_|`__,_|``___|_|`_`____/ `__,_|`___|_|`_` ");
         System.out.println(" ");
 
-        while (play.equals("YES") || play.equals("Yes") || play.equals("yes") || play.equals("Y") || play.equals("y")) {
+        String play = "YES";
+        while (play.matches("(?i)YES|Y")) {
 
             //clear all arrays if the game is to be played again:
             deck.cards.clear();
@@ -65,8 +63,7 @@ public class Runner {
                     if (player.calculateHandTotal() <= 21) {
                         System.out.println(player.getName() + ", do you want to twist or stick?");
                         Scanner twistOrStickAgain = new Scanner(System.in);
-                        String twistOrStickInputAgain = twistOrStickAgain.nextLine();
-                        twistOrStickInput = twistOrStickInputAgain;
+                        twistOrStickInput = twistOrStickAgain.nextLine();
                     } else {
                         System.out.println("You are over 21. You lost...");
                         twistOrStickInput = "lost";
@@ -75,17 +72,13 @@ public class Runner {
                 System.out.println("--------------------------------");
             }
 
-//            game.pushAllHandTotalsToArray();
-//            game.removeAllHandTotalsGreaterThan21();
-
             //Find the winner
             System.out.println(game.findTheWinner());
 
             //Wanna play again?
             Scanner again = new Scanner(System.in);
-            System.out.println("Do you want to play Back Jack again? Enter YES or NO");;
-            String playAgain = again.nextLine();
-            play = playAgain;
+            System.out.println("Do you want to play Back Jack again? Enter YES or NO");
+            play = again.nextLine();
         }
     }
 }

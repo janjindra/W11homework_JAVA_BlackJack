@@ -17,7 +17,7 @@ public class GameTest {
     @Before
     public void before(){
         deck = new Deck();
-        game = new Game(deck);
+        game = new Game();
         player1 = new Player("Jan");
         player2 = new Player("Peter");
         card1 = new Card(SuitType.CLUBS, RankType.KING);
@@ -76,12 +76,16 @@ public class GameTest {
         player1.addCardToHand(card2);
         player2.addCardToHand(card1);
         player2.addCardToHand(card2);
-        game.pushAllHandTotalsToArray();
-        game.removeAllHandTotalsGreaterThan21();
+        player1.calculateHandTotal();
+        player2.calculateHandTotal();
+        assertEquals("The winner is Peter with 20 points.", game.findTheWinner());
         assertEquals(13, game.allHandTotals.get(0),0.01);
         assertEquals(20, game.allHandTotals.get(1),0.01);
+        assertEquals(13, game.allHandTotalsLessThan21.get(0),0.01);
+        assertEquals(20, game.allHandTotalsLessThan21.get(1),0.01);
+        assertEquals(2, game.allHandTotals.size(),0.01);
+        assertEquals(2, game.allHandTotalsLessThan21.size(),0.01);
         assertEquals(20, Collections.max(game.allHandTotalsLessThan21),0.01);
-        assertEquals("The winner is Peter with 20 points.", game.findTheWinner());
     }
 
     @Test
@@ -92,12 +96,15 @@ public class GameTest {
         player1.addCardToHand(card2);
         player2.addCardToHand(card3);
         player2.addCardToHand(card2);
-        game.pushAllHandTotalsToArray();
-        game.removeAllHandTotalsGreaterThan21();
+        player1.calculateHandTotal();
+        player2.calculateHandTotal();
+        assertEquals("It's a draw.", game.findTheWinner());
         assertEquals(13, game.allHandTotals.get(0),0.01);
         assertEquals(13, game.allHandTotals.get(1),0.01);
+        assertEquals(13, game.allHandTotalsLessThan21.get(0),0.01);
+        assertEquals(13, game.allHandTotalsLessThan21.get(1),0.01);
         assertEquals(13, Collections.max(game.allHandTotalsLessThan21),0.01);
-        assertEquals("It's a draw.", game.findTheWinner());
     }
+
 
 }
